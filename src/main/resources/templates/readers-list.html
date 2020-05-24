@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <link crossorigin="anonymous"
@@ -9,5 +9,31 @@
   <meta charset="UTF-8">
 <body>
 
+<div class="container">
+<table class="table table-border table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Phone number</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>Books</th>
+  </tr>
+  </thead>g
+  <tbody>
+  <tr th:each="tempReader : ${readers}">
+    <td th:text="${tempReader.firstName}" />
+    <td th:text="${tempReader.lastName}" />
+    <td th:text="${tempReader.phoneNumber}" />
+    <td th:text="${tempReader.email}" />
+    <td th:text="${tempReader.address.address}" />
+    <td th:each="tempBook : ${tempReader.books}">
+      <p th:text="${tempBook.title}"></p>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div>
 </body>
 </html>

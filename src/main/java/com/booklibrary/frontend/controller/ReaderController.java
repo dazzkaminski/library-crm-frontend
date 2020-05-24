@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.RestClientException;
 
 @Controller
 @RequestMapping("/")
@@ -18,11 +17,7 @@ public class ReaderController {
   @GetMapping("/readers-list")
   public String listReaders(Model model) {
 
-    try {
-      model.addAttribute("readers", readerService.getReaders());
-    } catch (RestClientException e) {
-
-    }
+    model.addAttribute("readers", readerService.getReaders());
 
     return "readers-list";
   }
