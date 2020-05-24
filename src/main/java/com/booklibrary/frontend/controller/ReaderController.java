@@ -21,12 +21,14 @@ public class ReaderController {
   @GetMapping("/list")
   public String listReaders(Model model) {
 
+    Reader reader = new Reader();
     model.addAttribute("readers", readerService.getReaders());
+    model.addAttribute("reader", reader);
 
     return "readers/readers-list";
   }
 
-  @GetMapping("/showFormForAdd")
+  @GetMapping("/add-form")
   public String showFormForAdd(Model model) {
 
     Reader reader = new Reader();
@@ -36,7 +38,7 @@ public class ReaderController {
     return "readers/readers-form";
   }
 
-  @GetMapping("/showFormForUpdate")
+  @GetMapping("/update-form")
   public String showFormForUpdate(@RequestParam("id") int id, Model model) {
 
     Reader reader = readerService.getReader(id);
