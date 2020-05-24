@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+  <link crossorigin="anonymous"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+        rel="stylesheet">
+  <meta charset="UTF-8">
+<body>
+
+<div class="container">
+
+  <p class="h4 mb-4">Save reader</p>
+  <form action="#" th:action="@{/readers/save}" th:object="${reader}" method="post">
+
+    <input type="hidden" th:field="*{id}">
+
+    <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4" placeholder="First name">
+    <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4" placeholder="Last name">
+    <input type="text" th:field="*{phoneNumber}" class="form-control mb-4 col-4" placeholder="Phone number">
+    <input type="text" th:field="*{email}" class="form-control mb-4 col-4" placeholder="Email">
+    <input type="text" th:field="${reader.address.address}" class="form-control mb-4 col-4" placeholder="First line of the address">
+    <input type="text" th:field="${reader.address.postCode}" class="form-control mb-4 col-4" placeholder="Postcode">
+    <input type="text" th:field="${reader.address.city}" class="form-control mb-4 col-4" placeholder="city">
+    <input type="text" th:field="${reader.address.county}" class="form-control mb-4 col-4" placeholder="county">
+
+    <button type="submit" class="btn btn-info col-2">Save</button>
+  </form>
+</div>
+</body>
+</html>

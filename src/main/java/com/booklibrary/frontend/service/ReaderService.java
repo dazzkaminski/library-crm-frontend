@@ -24,4 +24,19 @@ public class ReaderService {
 
     return Arrays.asList(Optional.ofNullable(readers).orElse(new Reader[0]));
   }
+
+  public Reader getReader(int id) {
+
+    Reader reader = restTemplate.getForObject(readersEndpoint + "/" + id, Reader.class);
+
+    return reader;
+  }
+
+  public void createReader(Reader reader) {
+    restTemplate.postForObject(readersEndpoint, reader, Reader.class);
+  }
+
+  public void delete(int id) {
+    restTemplate.delete(readersEndpoint + "/" + id);
+  }
 }
