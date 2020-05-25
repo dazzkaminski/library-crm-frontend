@@ -82,7 +82,8 @@
           <td th:text="${tempBook.author}"/>
           <td th:text="${tempBook.releaseDate}"/>
           <td><a class="btn btn-light btn-sm"
-                 th:href="@{/readers/return-book(readerId=*{id}, bookId=${tempBook.id})}">Return</a></td>
+                 th:href="@{/readers/return-book(readerId=*{id}, bookId=${tempBook.id})}">Return</a>
+          </td>
         </tr>
         </tbody>
       </table>

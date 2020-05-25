@@ -15,8 +15,7 @@ public class ReaderService {
   @Value("${library.readers.endpoint}")
   private String readersEndpoint;
 
-  @Autowired
-  private RestTemplate restTemplate;
+  @Autowired private RestTemplate restTemplate;
 
   public List<Reader> getReaders() {
 
@@ -27,8 +26,8 @@ public class ReaderService {
 
   public List<Reader> search(String lastName) {
 
-    Reader[] readers = restTemplate
-        .getForObject(readersEndpoint + "/search/" + lastName, Reader[].class);
+    Reader[] readers =
+        restTemplate.getForObject(readersEndpoint + "/search/" + lastName, Reader[].class);
 
     return Arrays.asList(Optional.ofNullable(readers).orElse(new Reader[0]));
   }

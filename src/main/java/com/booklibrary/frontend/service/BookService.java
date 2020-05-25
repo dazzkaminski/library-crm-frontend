@@ -15,8 +15,7 @@ public class BookService {
   @Value("${library.books.endpoint}")
   private String endpoint;
 
-  @Autowired
-  private RestTemplate restTemplate;
+  @Autowired private RestTemplate restTemplate;
 
   public List<Book> getBooks() {
 

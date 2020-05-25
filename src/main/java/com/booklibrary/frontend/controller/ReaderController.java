@@ -4,7 +4,6 @@ import com.booklibrary.frontend.dto.Book;
 import com.booklibrary.frontend.dto.Reader;
 import com.booklibrary.frontend.service.BookService;
 import com.booklibrary.frontend.service.ReaderService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/readers")
 public class ReaderController {
 
-  @Autowired
-  private ReaderService readerService;
+  @Autowired private ReaderService readerService;
 
-  @Autowired
-  private BookService bookService;
+  @Autowired private BookService bookService;
 
   @GetMapping("/list")
   public String listReaders(Model model) {
@@ -45,7 +42,8 @@ public class ReaderController {
   }
 
   @GetMapping("/return-book")
-  public String returnBook(@RequestParam("readerId") int readerId, @RequestParam("bookId") int bookId) {
+  public String returnBook(
+      @RequestParam("readerId") int readerId, @RequestParam("bookId") int bookId) {
 
     Reader reader = readerService.getReader(readerId);
 
@@ -94,7 +92,6 @@ public class ReaderController {
 
     return "redirect:/readers/list";
   }
-
 
   @GetMapping("/delete")
   public String delete(@RequestParam("id") int id) {
