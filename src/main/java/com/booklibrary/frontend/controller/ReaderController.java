@@ -2,6 +2,7 @@ package com.booklibrary.frontend.controller;
 
 import com.booklibrary.frontend.dto.Reader;
 import com.booklibrary.frontend.service.ReaderService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,6 +47,14 @@ public class ReaderController {
     model.addAttribute("reader", reader);
 
     return "readers/readers-form";
+  }
+
+  @GetMapping("/search")
+  public String search(@RequestParam("lastName") String lastName, Model model) {
+
+    model.addAttribute("readers", readerService.search(lastName));
+
+    return "readers/readers-list";
   }
 
   @PostMapping("/save")

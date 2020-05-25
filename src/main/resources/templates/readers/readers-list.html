@@ -17,12 +17,10 @@
   <meta charset="UTF-8">
 <body>
 
-<div class="container vh-100">
-
+<div class="container-xl">
   <div class="row">
     <p class="h3 mt-3 mb-3">Open Public Book Library CRM</p>
   </div>
-
   <div class="row mt-3 mb-3">
     <ul class="nav nav-tabs">
       <li class="nav-item">
@@ -37,58 +35,27 @@
     </ul>
   </div>
 
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary mt-3 mb-3" data-toggle="modal" data-target="#exampleModal">
-    Add reader
-  </button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-       aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add reader</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+  <div class="row mb-3">
+    <div class="col col-6">
+      <a th:href="@{/readers/add-form}" class="btn btn-primary">Add reader</a>
+    </div>
+    <div class="col col-6">
+    <form action="#" th:action="@{/readers/search(lastName)}" method="get">
+      <div class="row">
+        <div class="col col-4">
+          <button type="submit" class="btn btn-primary form-control">Search</button>
         </div>
-        <div class="modal-body w-100">
-          <form action="#" th:action="@{/readers/save}" th:object="${reader}" method="post">
-
-            <input type="hidden" th:field="*{id}">
-
-            <input type="text" th:field="*{firstName}" class="form-control mb-3 mt-3"
-                   placeholder="First name">
-            <input type="text" th:field="*{lastName}" class="form-control mb-3 mt-3"
-                   placeholder="Last name">
-            <input type="text" th:field="*{phoneNumber}" class="form-control mb-3 mt-3"
-                   placeholder="Phone number">
-            <input type="text" th:field="*{email}" class="form-control mb-3 mt-3"
-                   placeholder="Email">
-            <input type="text" th:field="${reader.address.address}" class="form-control mb-3 mt-3"
-                   placeholder="First line of the address">
-            <input type="text" th:field="${reader.address.postCode}" class="form-control mb-3 mt-3"
-                   placeholder="Postcode">
-            <input type="text" th:field="${reader.address.city}" class="form-control mb-3 mt-3"
-                   placeholder="city">
-            <input type="text" th:field="${reader.address.county}" class="form-control mb-3 mt-3"
-                   placeholder="county">
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-
-          </form>
+        <div class="col">
+          <input type="text" name="lastName" class="form-control" placeholder="Search by last name">
         </div>
       </div>
+    </form>
     </div>
   </div>
 
+
   <div class="row">
     <div class="col">
-
       <table class="table table-hover">
         <thead>
         <tr>
@@ -110,20 +77,13 @@
           <td th:text="${tempReader.lastName}"/>
           <td th:text="${tempReader.phoneNumber}"/>
           <td th:text="${tempReader.email}"/>
-          <td th:text="${tempReader.address.address}"/>
-          <td><a th:href="@{/readers/update-form(id=${tempReader.id})}"
-                 class="btn btn-light btn-sm">Update</a>
-          </td>
-          <td><a th:href="@{/readers/delete(id=${tempReader.id})}"
-                 class="btn btn-light btn-sm">Delete</a>
-          </td>
-          <td><a th:href="@{/readers/readerCard(id=${tempReader.id})}"
-                 class="btn btn-light btn-sm">Reader Card</a>
-          </td>
+          <td th:text="${tempReader?.address?.address}"/>
+          <td><a th:href="@{/readers/update-form(id=${tempReader.id})}" class="btn btn-light btn-sm">Update</a></td>
+          <td><a th:href="@{/readers/delete(id=${tempReader.id})}" class="btn btn-light btn-sm">Delete</a></td>
+          <td><a th:href="@{/readers/readerCard(id=${tempReader.id})}" class="btn btn-light btn-sm">Reader Card</a></td>
         </tr>
         </tbody>
       </table>
-
     </div>
   </div>
 </div>

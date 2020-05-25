@@ -1,30 +1,83 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+          integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+          integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+          integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+          crossorigin="anonymous"></script>
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
         crossorigin="anonymous">
   <meta charset="UTF-8">
 <body>
-
-<div class="container">
-
-  <p class="h4 mb-4">Save reader</p>
+<div class="container-xl">
+  <div class="row">
+    <p class="h3 mt-3 mb-3">Open Public Book Library CRM</p>
+  </div>
+  <div class="row mt-3 mb-3">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="/readers/list">Readers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/books/list">Books</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/users/list">Users</a>
+      </li>
+    </ul>
+  </div>
   <form action="#" th:action="@{/readers/save}" th:object="${reader}" method="post">
-
     <input type="hidden" th:field="*{id}">
-
-    <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4" placeholder="First name">
-    <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4" placeholder="Last name">
-    <input type="text" th:field="*{phoneNumber}" class="form-control mb-4 col-4" placeholder="Phone number">
-    <input type="text" th:field="*{email}" class="form-control mb-4 col-4" placeholder="Email">
-    <input type="text" th:field="${reader.address.address}" class="form-control mb-4 col-4" placeholder="First line of the address">
-    <input type="text" th:field="${reader.address.postCode}" class="form-control mb-4 col-4" placeholder="Postcode">
-    <input type="text" th:field="${reader.address.city}" class="form-control mb-4 col-4" placeholder="city">
-    <input type="text" th:field="${reader.address.county}" class="form-control mb-4 col-4" placeholder="county">
-
-    <button type="submit" class="btn btn-info col-2">Save</button>
+    <div class="row">
+      <div class="col form-group">
+        <input type="text" th:field="*{firstName}" class="form-control" placeholder="First name">
+      </div>
+      <div class="col form-group">
+        <input type="text" th:field="*{lastName}" class="form-control" placeholder="Last name">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col form-group">
+        <input type="text" th:field="*{email}" class="form-control" placeholder="Email"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col form-group">
+        <input type="text" th:field="*{phoneNumber}" class="form-control" placeholder="Phone number"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col form-group">
+        <input type="text" th:field="${reader.address.address}" class="form-control" placeholder="Address"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col form-group">
+        <input type="text" th:field="${reader.address.city}" class="form-control" placeholder="City">
+      </div>
+      <div class="col form-group">
+        <input type="text" th:field="${reader.address.county}" class="form-control" placeholder="County">
+      </div>
+      <div class="col form-group">
+        <input type="text" th:field="${reader.address.postCode}" class="form-control" placeholder="Postcode">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <a href="/readers/list" class="btn btn-secondary col-1">Back</a>
+        <button type="submit" class="btn btn-primary col-1">Save</button>
+      </div>
+    </div>
   </form>
+  </div>
+</div>
 </div>
 </body>
 </html>
