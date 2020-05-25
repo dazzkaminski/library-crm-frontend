@@ -1,6 +1,8 @@
 package com.booklibrary.frontend.controller;
 
+import com.booklibrary.frontend.dto.Book;
 import com.booklibrary.frontend.dto.Reader;
+import com.booklibrary.frontend.service.BookService;
 import com.booklibrary.frontend.service.ReaderService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class ReaderController {
 
   @Autowired
   private ReaderService readerService;
+
+  @Autowired
+  private BookService bookService;
 
   @GetMapping("/list")
   public String listReaders(Model model) {
@@ -39,6 +44,21 @@ public class ReaderController {
     return "readers/readers-form";
   }
 
+  @GetMapping("/return-book")
+  public String returnBook(@RequestParam("readerId") int readerId, @RequestParam("bookId") int bookId) {
+
+    Reader reader = readerService.getReader(readerId);
+
+    Book book = bookService.getBook(bookId);
+    book.setAvailable(true);
+    bookService.createBook(book);
+
+    reader.getBooks().remove(bookId - 1);
+    readerService.createReader(reader);
+
+    return "redirect:/readers/list";
+  }
+
   @GetMapping("/update-form")
   public String showFormForUpdate(@RequestParam("id") int id, Model model) {
 
@@ -47,6 +67,16 @@ public class ReaderController {
     model.addAttribute("reader", reader);
 
     return "readers/readers-form";
+  }
+
+  @GetMapping("/readers-card")
+  public String showReadersCard(@RequestParam("id") int id, Model model) {
+
+    Reader reader = readerService.getReader(id);
+
+    model.addAttribute(reader);
+
+    return "readers/readers-card";
   }
 
   @GetMapping("/search")

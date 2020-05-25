@@ -27,7 +27,8 @@ public class ReaderService {
 
   public List<Reader> search(String lastName) {
 
-    Reader[] readers = restTemplate.getForObject(readersEndpoint + "/search/" + lastName, Reader[].class);
+    Reader[] readers = restTemplate
+        .getForObject(readersEndpoint + "/search/" + lastName, Reader[].class);
 
     return Arrays.asList(Optional.ofNullable(readers).orElse(new Reader[0]));
   }

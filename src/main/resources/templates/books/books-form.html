@@ -23,7 +23,7 @@
   <div class="row mt-3 mb-3">
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link active" href="/readers/list">Readers</a>
+        <a class="nav-link active" href="/books/list">Readers</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/books/list">Books</a>
@@ -33,50 +33,30 @@
       </li>
     </ul>
   </div>
-  <form action="#" method="post" th:action="@{/readers/save}" th:object="${reader}">
+  <form action="#" method="post" th:action="@{/books/save}" th:object="${book}">
     <input th:field="*{id}" type="hidden">
     <div class="row">
       <div class="col form-group">
-        <input class="form-control" placeholder="First name" th:field="*{firstName}" type="text">
+        <input class="form-control" placeholder="Title" th:field="*{title}" type="text">
       </div>
       <div class="col form-group">
-        <input class="form-control" placeholder="Last name" th:field="*{lastName}" type="text">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col form-group">
-        <input class="form-control" placeholder="Email" th:field="*{email}" type="text"/>
+        <input class="form-control" placeholder="Description" th:field="*{description}" type="text">
       </div>
     </div>
     <div class="row">
       <div class="col form-group">
-        <input class="form-control" placeholder="Phone number" th:field="*{phoneNumber}"
-               type="text"/>
+        <input class="form-control" placeholder="Author" th:field="*{author}" type="text"/>
       </div>
     </div>
     <div class="row">
       <div class="col form-group">
-        <input class="form-control" placeholder="Address" th:field="${reader.address.address}"
-               type="text"/>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col form-group">
-        <input class="form-control" placeholder="City" th:field="${reader.address.city}"
-               type="text">
-      </div>
-      <div class="col form-group">
-        <input class="form-control" placeholder="County" th:field="${reader.address.county}"
-               type="text">
-      </div>
-      <div class="col form-group">
-        <input class="form-control" placeholder="Postcode" th:field="${reader.address.postCode}"
-               type="text">
+        <input class="form-control" placeholder="Publication date" th:field="*{releaseDate}"
+               type="date"/>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <a class="btn btn-secondary col-1" href="/readers/list">Back</a>
+        <a class="btn btn-secondary col-1" href="/books/list">Back</a>
         <button class="btn btn-primary col-1" type="submit">Save</button>
       </div>
     </div>

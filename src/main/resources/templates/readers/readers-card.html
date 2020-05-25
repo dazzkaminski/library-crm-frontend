@@ -16,10 +16,9 @@
         rel="stylesheet">
   <meta charset="UTF-8">
 <body>
-
-<div class="container-xl">
-  <div class="row">
-    <p class="h3 mt-3 mb-3">Open Public Book Library CRM</p>
+<div class="container-xl" th:object="${reader}">
+  <div class="row mt-3 mb-3">
+    <p class="h3">Open Public Book Library CRM</p>
   </div>
   <div class="row mt-3 mb-3">
     <ul class="nav nav-tabs">
@@ -34,23 +33,32 @@
       </li>
     </ul>
   </div>
-
-  <div class="row mb-3">
-    <div class="col col-6">
-      <a class="btn btn-primary" th:href="@{/readers/add-form}">Add reader</a>
+  <div class="row mt-3">
+    <div class="col-auto mr-auto">
+      <p class="h4" th:text="@{*{firstName} + ' ' + *{lastName}}"/>
     </div>
-    <div class="col col-6">
-      <form action="#" method="get" th:action="@{/readers/search(lastName)}">
-        <div class="row">
-          <div class="col col-4">
-            <button class="btn btn-primary form-control" type="submit">Search</button>
-          </div>
-          <div class="col">
-            <input class="form-control" name="lastName" placeholder="Search by last name"
-                   type="text">
-          </div>
-        </div>
-      </form>
+    <div class="col-auto">
+      <td><a class="btn btn-primary btn-sm" th:href="@{/readers/update-form(id=*{id})}">Edit</a>
+      </td>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <p>Phone number: <span th:text="@{*{phoneNumber}}"></span></p>
+      <p>Email: <span th:text="@{*{email}}"></span></p>
+      <p>Address: <span th:text="@{*{address?.address}}"></span></p>
+      <p>City: <span th:text="@{*{address?.city}}"></span></p>
+      <p>County: <span th:text="@{*{address?.county}}"></span></p>
+      <p>Post code: <span th:text="@{*{address?.postCode}}"></span></p>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-auto mr-auto">
+      <p class="h4">Borrowed Books</p>
+    </div>
+    <div class="col-auto">
+      <a class="btn btn-primary btn-sm" th:href="@{/books/borrow(readerId=*{id})}">Borrow a book</a>
     </div>
   </div>
   <div class="row">
@@ -59,30 +67,22 @@
         <thead>
         <tr>
           <th>#</th>
-          <th>First name</th>
-          <th>Last name</th>
-          <th>Phone number</th>
-          <th>Email</th>
-          <th>Address</th>
-          <th>Update</th>
-          <th>Dele</th>
-          <th>Show card</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Author</th>
+          <th>Release date</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="tempReader : ${readers}">
-          <td th:text="${tempReader.id}"/>
-          <td th:text="${tempReader.firstName}"/>
-          <td th:text="${tempReader.lastName}"/>
-          <td th:text="${tempReader.phoneNumber}"/>
-          <td th:text="${tempReader.email}"/>
-          <td th:text="${tempReader?.address?.address}"/>
+        <tr th:each="tempBook : *{books}">
+          <td th:text="${tempBook.id}"/>
+          <td th:text="${tempBook.title}"/>
+          <td th:text="${tempBook.description}"/>
+          <td th:text="${tempBook.author}"/>
+          <td th:text="${tempBook.releaseDate}"/>
           <td><a class="btn btn-light btn-sm"
-                 th:href="@{/readers/update-form(id=${tempReader.id})}">Update</a></td>
-          <td><a class="btn btn-light btn-sm" th:href="@{/readers/delete(id=${tempReader.id})}">Delete</a>
-          </td>
-          <td><a class="btn btn-light btn-sm"
-                 th:href="@{/readers/readers-card(id=${tempReader.id})}">Reader Card</a></td>
+                 th:href="@{/readers/return-book(readerId=*{id}, bookId=${tempBook.id})}">Return</a></td>
         </tr>
         </tbody>
       </table>
@@ -91,4 +91,4 @@
 </div>
 </div>
 </body>
-</head></html>
+</html>

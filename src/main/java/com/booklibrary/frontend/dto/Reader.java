@@ -1,6 +1,5 @@
 package com.booklibrary.frontend.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,4 +25,12 @@ public class Reader {
   private Address address;
 
   private List<Book> books;
+
+  public void addBook(Book book) {
+    books.add(book);
+  }
+
+  public void removeBook(Book book) {
+    books.indexOf(book);
+  }
 }
