@@ -22,21 +22,24 @@
     <input th:field="*{id}" type="hidden">
     <div class="row">
       <div class="col form-group">
-        <input class="form-control" placeholder="Title" th:field="*{title}" type="text">
+        <input type="text" class="form-control" placeholder="Title" th:field="*{title}">
+        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="badge badge-danger"></span>
       </div>
       <div class="col form-group">
-        <input class="form-control" placeholder="Description" th:field="*{description}" type="text">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col form-group">
-        <input class="form-control" placeholder="Author" th:field="*{author}" type="text"/>
+        <input type="text" class="form-control" placeholder="Description" th:field="*{description}">
+        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="badge badge-danger"></span>
       </div>
     </div>
     <div class="row">
       <div class="col form-group">
-        <input class="form-control" placeholder="Publication date" th:field="*{releaseDate}"
-               type="date"/>
+        <input type="text" class="form-control" placeholder="Author" th:field="*{author}"/>
+        <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" class="badge badge-danger"></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col form-group">
+        <input type="date" class="form-control" placeholder="Publication date" th:field="*{releaseDate}" />
+        <span th:if="${#fields.hasErrors('releaseDate')}" th:errors="*{releaseDate}" class="badge badge-danger"></span>
       </div>
     </div>
     <div class="row">
