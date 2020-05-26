@@ -4,10 +4,15 @@ import com.booklibrary.frontend.dto.Book;
 import com.booklibrary.frontend.dto.Reader;
 import com.booklibrary.frontend.service.BookService;
 import com.booklibrary.frontend.service.ReaderService;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +25,14 @@ public class BooksController {
   @Autowired private BookService bookService;
 
   @Autowired private ReaderService readerService;
+
+  @InitBinder
+  public void initBinder(WebDataBinder dataBinder) {
+
+    StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+
+    dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+  }
 
   @GetMapping("/list")
   public String listBooks(Model model) {
@@ -98,7 +111,12 @@ public class BooksController {
   }
 
   @PostMapping("/save")
-  public String save(@ModelAttribute("book") Book book) {
+  public String save(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult) {
+
+    if (bindingResult.hasErrors()) {
+
+      return "books/books-form";
+    }
 
     bookService.createBook(book);
 
