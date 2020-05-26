@@ -17,28 +17,13 @@
   <meta charset="UTF-8">
 <body>
 <div class="container-xl" th:object="${user}">
-  <div class="row mt-3 mb-3">
-    <p class="h3">Open Public Book Library CRM</p>
-  </div>
-  <div class="row mt-3 mb-3">
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" href="/users/list">Readers</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/books/list">Books</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/users/list">Users</a>
-      </li>
-    </ul>
-  </div>
+  <div class="row mb-5" th:replace="header"></div>
   <div class="row mt-3">
     <div class="col-auto mr-auto">
       <p class="h4" th:text="@{*{userName}}"/>
     </div>
     <div class="col-auto">
-      <td><a class="btn btn-primary btn-sm" th:href="@{/users/update-form(id=*{id})}">Edit</a>
+      <td><a class="btn btn-dark btn-sm" th:href="@{/users/update-form(id=*{id})}">Edit</a>
       </td>
     </div>
   </div>

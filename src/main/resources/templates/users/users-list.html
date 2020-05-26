@@ -18,31 +18,16 @@
 <body>
 
 <div class="container-xl">
-  <div class="row">
-    <p class="h3 mt-3 mb-3">Open Public Book Library CRM</p>
-  </div>
-  <div class="row mt-3 mb-3">
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" href="/readers/list">Readers</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/books/list">Books</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/users/list">Users</a>
-      </li>
-    </ul>
-  </div>
+  <div class="row mb-5" th:replace="header"></div>
   <div class="row mb-3">
     <div class="col col-6">
-      <a class="btn btn-primary" th:href="@{/users/add-form}">Add user</a>
+      <a class="btn btn-dark" th:href="@{/users/add-form}">Add user</a>
     </div>
     <div class="col col-6">
       <form action="#" method="get" th:action="@{/users/search(userName)}">
         <div class="row">
           <div class="col col-4">
-            <button class="btn btn-primary form-control" type="submit">Search</button>
+            <button class="btn btn-dark form-control" type="submit">Search</button>
           </div>
           <div class="col">
             <input class="form-control" name="userName" placeholder="Search by user name"
@@ -72,12 +57,12 @@
           <td th:text="${tempUser.userName}"/>
           <td th:text="${tempUser.email}"/>
           <td th:text="${tempUser.role}"/>
-          <td><a class="btn btn-light btn-sm"
+          <td><a class="btn btn-dark btn-sm"
                  th:href="@{/users/update-form(id=${tempUser.id})}">Update</a></td>
-          <td><a class="btn btn-light btn-sm"
+          <td><a class="btn btn-dark btn-sm"
                  th:href="@{/users/delete(id=${tempUser.id})}">Delete</a>
           </td>
-          <td><a class="btn btn-light btn-sm"
+          <td><a class="btn btn-dark btn-sm"
                  th:href="@{/users/users-card(id=${tempUser.id})}">Info</a></td>
         </tr>
         </tbody>

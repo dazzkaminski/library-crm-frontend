@@ -40,10 +40,12 @@ public class ReaderService {
   }
 
   public void createReader(Reader reader) {
+
     restTemplate.postForObject(readersEndpoint, reader, Reader.class);
   }
 
   public void delete(int id) {
+
     restTemplate.delete(readersEndpoint + "/" + id);
   }
 }
