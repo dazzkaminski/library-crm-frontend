@@ -54,7 +54,7 @@ public class ReaderController {
     reader.getBooks().remove(bookId - 1);
     readerService.createReader(reader);
 
-    return "redirect:/readers/list";
+    return "redirect:/readers/readers-card?=" + readerId;
   }
 
   @GetMapping("/update-form")
