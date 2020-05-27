@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <script crossorigin="anonymous"
           integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -15,52 +15,64 @@
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
         rel="stylesheet">
   <meta charset="UTF-8">
-  <style>.error {color: red}</style>
+  <style>.error {
+    color: red
+  }</style>
 </head>
 <body>
 <div class="container-xl">
   <div class="row mb-5" th:replace="header"></div>
-  <form action="#" method="post" th:action="@{/readers/save}" th:object="${reader}" >
+  <form action="#" method="post" th:action="@{/readers/save}" th:object="${reader}">
     <input th:field="*{id}" type="hidden">
     <div class="row">
       <div class="col form-group">
-        <input type="text" class="form-control" placeholder="First name" th:field="*{firstName}"/>
-        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="badge badge-danger"></span>
+        <input class="form-control" placeholder="First name" th:field="*{firstName}" type="text"/>
+        <span class="badge badge-danger" th:errors="*{firstName}"
+              th:if="${#fields.hasErrors('firstName')}"></span>
       </div>
       <div class="col form-group">
         <input class="form-control" placeholder="Last name" th:field="*{lastName}" type="text">
-        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="badge badge-danger"></span>
+        <span class="badge badge-danger" th:errors="*{lastName}"
+              th:if="${#fields.hasErrors('lastName')}"></span>
       </div>
     </div>
     <div class="row">
       <div class="col form-group">
         <input class="form-control" placeholder="Email" th:field="*{email}" type="text"/>
-        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="badge badge-danger"></span>
+        <span class="badge badge-danger" th:errors="*{email}"
+              th:if="${#fields.hasErrors('email')}"></span>
       </div>
     </div>
     <div class="row">
       <div class="col form-group">
-        <input class="form-control" placeholder="Phone number" th:field="*{phoneNumber}" type="text"/>
-        <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="badge badge-danger"></span>
+        <input class="form-control" placeholder="Phone number" th:field="*{phoneNumber}"
+               type="text"/>
+        <span class="badge badge-danger" th:errors="*{phoneNumber}"
+              th:if="${#fields.hasErrors('phoneNumber')}"></span>
       </div>
     </div>
     <div class="row">
       <div class="col form-group">
-        <input class="form-control" placeholder="Address" th:field="*{address.address}" type="text"/>
-        <span th:if="${#fields.hasErrors('address.address')}" th:errors="*{address.address}" class="badge badge-danger"></span>
+        <input class="form-control" placeholder="Address" th:field="*{address.address}"
+               type="text"/>
+        <span class="badge badge-danger" th:errors="*{address.address}"
+              th:if="${#fields.hasErrors('address.address')}"></span>
       </div>
     </div>
     <div class="row">
       <div class="col form-group">
         <input class="form-control" placeholder="City" th:field="*{address.city}" type="text">
-        <span th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}" class="badge badge-danger"></span>
+        <span class="badge badge-danger" th:errors="*{address.city}"
+              th:if="${#fields.hasErrors('address.city')}"></span>
       </div>
       <div class="col form-group">
         <input class="form-control" placeholder="County" th:field="*{address.county}" type="text">
       </div>
       <div class="col form-group">
-        <input class="form-control" placeholder="Postcode" th:field="*{address.postCode}" type="text">
-        <span th:if="${#fields.hasErrors('address.postCode')}" th:errors="*{address.postCode}" class="badge badge-danger"></span>
+        <input class="form-control" placeholder="Postcode" th:field="*{address.postCode}"
+               type="text">
+        <span class="badge badge-danger" th:errors="*{address.postCode}"
+              th:if="${#fields.hasErrors('address.postCode')}"></span>
       </div>
     </div>
     <div class="row">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <script crossorigin="anonymous"
           integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -23,26 +23,30 @@
     <div class="row">
       <div class="col form-group">
         <input class="form-control" placeholder="Username" th:field="*{userName}" type="text">
-        <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="badge badge-danger"></span>
+        <span class="badge badge-danger" th:errors="*{userName}"
+              th:if="${#fields.hasErrors('userName')}"></span>
       </div>
       <div class="col form-group">
         <input class="form-control" placeholder="Password" th:field="*{password}" type="text">
-        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="badge badge-danger"></span>
+        <span class="badge badge-danger" th:errors="*{password}"
+              th:if="${#fields.hasErrors('password')}"></span>
       </div>
     </div>
     <div class="row">
       <div class="col form-group">
-        <select th:field="*{role}" class="form-control">
-          <option th:value="'Admin'" th:text="Admin"></option>
-          <option th:value="'Employee'" th:text="Employee"></option>
+        <select class="form-control" th:field="*{role}">
+          <option th:text="Admin" th:value="'Admin'"></option>
+          <option th:text="Employee" th:value="'Employee'"></option>
         </select>
-        <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="badge badge-danger"></span>
+        <span class="badge badge-danger" th:errors="*{role}"
+              th:if="${#fields.hasErrors('role')}"></span>
       </div>
     </div>
     <div class="row">
       <div class="col form-group">
         <input class="form-control" placeholder="Email" th:field="*{email}" type="text"/>
-        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="badge badge-danger"></span>
+        <span class="badge badge-danger" th:errors="*{email}"
+              th:if="${#fields.hasErrors('email')}"></span>
       </div>
     </div>
     <div class="row">

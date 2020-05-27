@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <script crossorigin="anonymous"
           integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -22,24 +22,29 @@
     <input th:field="*{id}" type="hidden">
     <div class="row">
       <div class="col form-group">
-        <input type="text" class="form-control" placeholder="Title" th:field="*{title}">
-        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="badge badge-danger"></span>
+        <input class="form-control" placeholder="Title" th:field="*{title}" type="text">
+        <span class="badge badge-danger" th:errors="*{title}"
+              th:if="${#fields.hasErrors('title')}"></span>
       </div>
       <div class="col form-group">
-        <input type="text" class="form-control" placeholder="Description" th:field="*{description}">
-        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="badge badge-danger"></span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col form-group">
-        <input type="text" class="form-control" placeholder="Author" th:field="*{author}"/>
-        <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" class="badge badge-danger"></span>
+        <input class="form-control" placeholder="Description" th:field="*{description}" type="text">
+        <span class="badge badge-danger" th:errors="*{description}"
+              th:if="${#fields.hasErrors('description')}"></span>
       </div>
     </div>
     <div class="row">
       <div class="col form-group">
-        <input type="date" class="form-control" placeholder="Publication date" th:field="*{releaseDate}" />
-        <span th:if="${#fields.hasErrors('releaseDate')}" th:errors="*{releaseDate}" class="badge badge-danger"></span>
+        <input class="form-control" placeholder="Author" th:field="*{author}" type="text"/>
+        <span class="badge badge-danger" th:errors="*{author}"
+              th:if="${#fields.hasErrors('author')}"></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col form-group">
+        <input class="form-control" placeholder="Publication date" th:field="*{releaseDate}"
+               type="date"/>
+        <span class="badge badge-danger" th:errors="*{releaseDate}"
+              th:if="${#fields.hasErrors('releaseDate')}"></span>
       </div>
     </div>
     <div class="row">

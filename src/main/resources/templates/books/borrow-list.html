@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <script crossorigin="anonymous"
           integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -62,9 +62,10 @@
           <td th:text="${tempBook.releaseDate}"/>
           <td><a class="btn btn-dark btn-sm" th:href="@{/books/update-form(id=${tempBook.id})}">Update</a>
           </td>
-          <td><a class="btn btn-dark btn-sm" th:href="@{/books/delete(id=${tempBook.id})}">Delete</a></td>
+          <td><a class="btn btn-dark btn-sm"
+                 th:href="@{/books/delete(id=${tempBook.id})}">Delete</a></td>
           <td><a class="btn btn-sm"
-                 th:classappend="${tempBook.available} ? btn-success : 'btn-danger disabled'"
+                 th:classappend="${tempBook.available} ? 'btn-success' : 'btn-danger disabled'"
                  th:href="@{/books/borrow/save(readerId=*{readerId}, bookId=${tempBook.id})}"
                  th:text="${tempBook.available} ?  'Borrow' : 'Not available'"></a>
           </td>

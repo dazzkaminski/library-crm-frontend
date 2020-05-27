@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <script crossorigin="anonymous"
           integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -67,7 +67,7 @@
           <td th:text="${tempBook.description}"/>
           <td th:text="${tempBook.author}"/>
           <td th:text="${tempBook.releaseDate}"/>
-          <td th:text="${tempBook.dateOfBorrowing}" />
+          <td th:text="${tempBook.dateOfBorrowing}"/>
           <td><a class="btn btn-dark btn-sm"
                  th:href="@{/readers/return-book(readerId=*{id}, bookId=${tempBook.id})}">Return</a>
           </td>
