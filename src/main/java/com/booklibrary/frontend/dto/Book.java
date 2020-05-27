@@ -1,5 +1,6 @@
 package com.booklibrary.frontend.dto;
 
+import java.time.LocalDate;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,9 @@ public class Book {
 
   @DateTimeFormat(pattern = "dd/MM/yyyy")
   private String releaseDate;
+
+  @DateTimeFormat(pattern = "dd/MM/yyyy")
+  private LocalDate dateOfBorrowing;
 
   private boolean isAvailable;
 }

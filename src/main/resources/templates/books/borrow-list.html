@@ -20,7 +20,8 @@
   <div class="row mb-5" th:replace="header"></div>
   <div class="row mb-3">
     <div class="col" th:object="${readerId}">
-      <a class="btn btn-secondary col-1" th:href="@{/readers/readers-card?id=} + ${readerId}">Back</a>
+      <a class="btn btn-secondary col-1"
+         th:href="@{/readers/readers-card?id=} + ${readerId}">Back</a>
     </div>
     <div class="col col-6" th:if="*{readerId == null}">
       <form action="#" method="get" th:action="@{/books/search(title)}">
@@ -49,6 +50,7 @@
           <th></th>
           <th></th>
           <th></th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
@@ -60,11 +62,11 @@
           <td th:text="${tempBook.releaseDate}"/>
           <td><a class="btn btn-dark btn-sm" th:href="@{/books/update-form(id=${tempBook.id})}">Update</a>
           </td>
-          <td><a class="btn btn-dark btn-sm"
-                 th:href="@{/books/delete(id=${tempBook.id})}">Delete</a></td>
+          <td><a class="btn btn-dark btn-sm" th:href="@{/books/delete(id=${tempBook.id})}">Delete</a></td>
           <td><a class="btn btn-sm"
-                 th:classappend="${tempBook.available} ? btn-success : btn-danger "
-                 th:href="@{/books/borrow/save(readerId=*{readerId}, bookId=${tempBook.id})}">Borrow</a>
+                 th:classappend="${tempBook.available} ? btn-success : 'btn-danger disabled'"
+                 th:href="@{/books/borrow/save(readerId=*{readerId}, bookId=${tempBook.id})}"
+                 th:text="${tempBook.available} ?  'Borrow' : 'Not available'"></a>
           </td>
           <td><a class="btn btn-dark btn-sm" th:href="@{/books/book-card(id=${tempBook.id})}">Book
             Card</a></td>

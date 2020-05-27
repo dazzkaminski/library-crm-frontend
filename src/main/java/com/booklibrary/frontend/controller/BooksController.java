@@ -4,6 +4,7 @@ import com.booklibrary.frontend.dto.Book;
 import com.booklibrary.frontend.dto.Reader;
 import com.booklibrary.frontend.service.BookService;
 import com.booklibrary.frontend.service.ReaderService;
+import java.time.LocalDate;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -61,10 +62,14 @@ public class BooksController {
   @GetMapping("/borrow/save")
   public String borrow(@RequestParam("readerId") int readerId, @RequestParam("bookId") int bookId) {
 
-    Reader reader = readerService.getReader(readerId);
+    Reader reader = readerService.getReader(readerId)
+        ;
     Book book = bookService.getBook(bookId);
 
+    book.setDateOfBorrowing(LocalDate.now());
+
     book.setAvailable(false);
+
     reader.getBooks().add(book);
 
     readerService.createReader(reader);
