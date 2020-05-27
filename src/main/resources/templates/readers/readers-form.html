@@ -24,6 +24,19 @@
   <div class="row mb-5" th:replace="header"></div>
   <form action="#" method="post" th:action="@{/readers/save}" th:object="${reader}">
     <input th:field="*{id}" type="hidden">
+
+    <!--  WITHOUT THE BELOW CODE THYMELEAF WOULD CREATE A NEW BOOKS ARRAY
+          SO WHEN UPDATING IT WOULD OVERIDE THE PREVIOUS ARRAY WITH EMPTY ONE -->
+
+    <div th:type="hidden" th:each="books, stat : ${reader.books}">
+      <input th:field="*{books[__${stat.index}__].id}" type="hidden">
+      <input th:field="*{books[__${stat.index}__].title}" type="hidden">
+      <input th:field="*{books[__${stat.index}__].description}" type="hidden">
+      <input th:field="*{books[__${stat.index}__].author}" type="hidden">
+      <input th:field="*{books[__${stat.index}__].releaseDate}" type="hidden">
+      <input th:field="*{books[__${stat.index}__].dateOfBorrowing}" type="hidden">
+      <input th:field="*{books[__${stat.index}__].available}" type="hidden">
+    </div>
     <div class="row">
       <div class="col form-group">
         <input class="form-control" placeholder="First name" th:field="*{firstName}" type="text"/>

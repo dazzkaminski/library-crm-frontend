@@ -5,6 +5,7 @@ import com.booklibrary.frontend.dto.Book;
 import com.booklibrary.frontend.dto.Reader;
 import com.booklibrary.frontend.service.BookService;
 import com.booklibrary.frontend.service.ReaderService;
+import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @RequestMapping("/readers")
@@ -55,6 +57,17 @@ public class ReaderController {
     return "readers/readers-form";
   }
 
+  @GetMapping("/update-form")
+  public String showFormForUpdate(@RequestParam("id") int id, Model model) {
+
+    Reader reader = readerService.getReader(id);
+
+    model.addAttribute("books", reader.getBooks());
+    model.addAttribute("reader", reader);
+
+    return "readers/readers-form";
+  }
+
   @GetMapping("/return-book")
   public String returnBook(
       @RequestParam("readerId") int readerId, @RequestParam("bookId") int bookId) {
@@ -69,16 +82,6 @@ public class ReaderController {
     readerService.createReader(reader);
 
     return "redirect:/readers/readers-card?id=" + readerId;
-  }
-
-  @GetMapping("/update-form")
-  public String showFormForUpdate(@RequestParam("id") int id, Model model) {
-
-    Reader reader = readerService.getReader(id);
-
-    model.addAttribute("reader", reader);
-
-    return "readers/readers-form";
   }
 
   @GetMapping("/readers-card")

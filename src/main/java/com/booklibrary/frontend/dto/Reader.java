@@ -1,5 +1,6 @@
 package com.booklibrary.frontend.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -39,7 +40,7 @@ public class Reader {
   @Valid
   private Address address;
 
-  private List<Book> books;
+  private List<Book> books = new ArrayList<>();
 
   public void addBook(Book book) {
     books.add(book);
