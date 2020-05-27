@@ -47,10 +47,6 @@
           <th>Author</th>
           <th>Release date</th>
           <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
         </tr>
         </thead>
         <tbody>
@@ -60,17 +56,11 @@
           <td th:text="${tempBook.description}"/>
           <td th:text="${tempBook.author}"/>
           <td th:text="${tempBook.releaseDate}"/>
-          <td><a class="btn btn-dark btn-sm" th:href="@{/books/update-form(id=${tempBook.id})}">Update</a>
-          </td>
-          <td><a class="btn btn-dark btn-sm"
-                 th:href="@{/books/delete(id=${tempBook.id})}">Delete</a></td>
           <td><a class="btn btn-sm"
                  th:classappend="${tempBook.available} ? 'btn-success' : 'btn-danger disabled'"
                  th:href="@{/books/borrow/save(readerId=*{readerId}, bookId=${tempBook.id})}"
                  th:text="${tempBook.available} ?  'Borrow' : 'Not available'"></a>
           </td>
-          <td><a class="btn btn-dark btn-sm" th:href="@{/books/book-card(id=${tempBook.id})}">Book
-            Card</a></td>
         </tr>
         </tbody>
       </table>
